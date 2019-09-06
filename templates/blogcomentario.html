@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Opiniones del Curso del Flask</title>
+</head>
+<body>
+    <h1>Blog de Opiniones</h1>
+    <table align="center">
+        <tr>
+            <td>Nombre</td>
+            <td>Comentario</td>
+            <td>Sexo</td>
+        </tr>
+        {% for c in come %}
+           <tr>
+               <td> {{ c.nombre }}</td>
+               <td> {{ c.descripcion }}</td>
+               <td> 
+                   {% if c.sexo == 1 %}
+                     Mujer
+                    {% else %}
+                     Hombre
+                   {% endif %}    
+               </td>
+           </tr>
+        {% endfor %}
+    </table>
+ <form action ="{{ url_for('guardar')}}" method="POST" >
+     <input type="text" name="nombre"><br>
+     <textarea name="des" cols="30" rows="10"></textarea>
+     <input type="radio" name="sexo" value="1">Mujer<br>
+     <input type="radio" name="sexo" value="2">Hombre<br>
+     <input type="submit" value="Guardar">
+ </form>  
+    
+</body>
+</html>

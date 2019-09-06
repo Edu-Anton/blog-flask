@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block tittle %}{% endblock %}</title>
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/bootstrap.min.css') }}">
+  </head>
+  <body style="background-color: #1F1E24;">
+    <div style="margin: 0 auto; padding:0;">
+    <nav class="navbar navbar-default" style="background-color:white; height:70px; width:100%; margin:0 auto;border-radius:0;">
+      <div class="container">
+        
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div id="logotipo">
+              <a class="navbar-brand navbar-btn" id="logo" href="#">
+                <img src="{{ url_for('static', filename='img/logoCodigo.png') }}" alt="" class="img-responsive" style="height:40px;width:150px;position:relative;top:-10px">
+              </a>
+            </div>
+          </div>
+          <div class="collapse navbar-collapse navbar-btn" id="bs-example-navbar-collapse-1" style="text-align: right !important;">
+            <ul class="nav navbar-nav" style="display: inline-block !important;float: none !important;vertical-align: top !important;">
+                <li><a href="{{url_for('index')}}" class=""><i class="fa fa-users" aria-hidden="true"></i>INICIO</a>
+                <li><a href="#" class=""><i class="fa fa-users" aria-hidden="true"></i>ANALISIS</a>
+                <li><a href="#" class=""><i class="fa fa-picture-o" aria-hidden="true"></i>VIDEO</a>
+                <li><a href="{{url_for('create')}}" class=""><i class="fa fa-hand-lizard-o" aria-hidden="true"></i>FORO</a>
+                <li><a href="#" class=""><i class="fa fa-comments" aria-hidden="true"></i>FAQ</a>
+                </li>
+            </ul>
+          </div>
+        
+      </div>
+    </nav>
+    </div>
+    
+    <img src="{{ url_for('static', filename='img/logobanner.jpg') }}" alt="" class="img-responsive" style="width: 100%;height:30vh; ">
+    
+    <div class="container">
+  <div class="row">
+    <div class="col-sm-12" style="background-color:white;height:900px;padding:30px;">
+      {% block body %}
+      {% endblock %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12" style="background-color:#141414;">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At autem odit perferendis. Beatae cumque enim error exercitationem harum illo libero quis repellat unde. Atque in sapiente sed temporibus tenetur veritatis!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque, doloremque earum id nemo officia officiis praesentium quia saepe unde. Atque distinctio dolorem ea id nisi officiis placeat quaerat quos? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam amet cupiditate harum id, incidunt ipsam, maiores molestiae natus odit pariatur soluta, tempora tempore? Debitis deleniti obcaecati officia rem sint.</p>
+    </div>
+  </div>
+</div>
+   
+  </body>
+</html>
