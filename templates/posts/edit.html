@@ -3,6 +3,7 @@
 {% block title %}Blog de CodiGO{% endblock %}
 
 {% block body %}
+  
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       {% if todos_errores %}
@@ -16,12 +17,11 @@
       {% endif %}
     </div>
   </div>
-
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading">
-            <h2>Nuevo Post</h2>
+            <h2>Edición de Post</h2>
         </div>
         <div class="panel-body">
           <form action="{{ url_for('store') }}" method="POST" enctype="multipart/form-data">
@@ -34,7 +34,10 @@
                 <textarea name="description" id="description" cols="30" rows="3" class="form-control">{{post.2}}</textarea>
             </div>
             <div class="form-group">
-              {{ form.url.label }} {{ form.url(class_='form-control') }}
+              <div>
+                <img src="{{ url_for('static', filename=post.3) }}" alt="" style="display:inline-block ;margin-left:30%">
+              </div>
+              {{ form.url.label }} {{ form.url(class_='form-control', value=post.3) }}
             </div>
              
             <div class="form-group">

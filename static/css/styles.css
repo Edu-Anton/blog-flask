@@ -1,3 +1,8 @@
 #table-show #td-show {
   padding: 20px !important
 }
+
+.btn-container {
+  margin-bottom: 30px;
+  padding: 5px;
+}

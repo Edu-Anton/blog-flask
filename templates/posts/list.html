@@ -6,6 +6,32 @@
   <div class="row">
     <div class="col-sm-12">  
       <h1>Listado de Post</h1>
+      <div class="row">
+        <div class="col-md-9">
+          {% with messages = get_flashed_messages()  %}
+              {{messgges}}
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <p>{{ message }}</p>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+        <div class="col-md-3">  
+          <div class="btn-container" style="margin-top:20px; margin-bottom:30px; height: 30px">
+            <a href="{{ url_for('create') }}"><button class="btn btn-success" style="float:right">Crear Nuevo Post</button></a>
+          </div>
+        </div>
+      </div>
+
+
+      
+
       <table class="table table-bordered table-striped">
         <thead>
           <th>Title</th>
@@ -19,7 +45,7 @@
               <td>{{ post.1 }}</td>
               <td><a href="{{ url_for('show', id= post.0) }}"><button class="btn btn-primary">Ver</button></a> </td>
               <td><a href="{{ url_for('edit', id= post.0) }}"><button class="btn btn-primary">Editar</button></a> </td>
-              <td><a href=""><button class="btn btn-danger">Eliminar</button></a> </td>
+              <td><a href="{{ url_for('destroy', id= post.0) }}"><button class="btn btn-danger">Eliminar</button></a> </td>
             </tr>
           {% endfor %}
           

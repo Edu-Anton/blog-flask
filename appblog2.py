@@ -58,14 +58,15 @@ def store():
     cur.execute('INSERT INTO blog (title, description, url) VALUES (%s, %s, %s)', (title, description, url))
     mysql.connection.commit()
     cur.close()
-    return redirect(url_for('index'))
+    flash('Contact Created Successfully')
+    return redirect(url_for('list'))
   else:
     return render_template('posts/create.html', form=form, todos_errores=form.errors.items())
 
 @app.route('/posts/<id>/show')
 def show(id):
   cur = mysql.connection.cursor()
-  cur.execute('SELECT * FROM blog WHERE _id = %s', (id))
+  cur.execute('SELECT * FROM blog WHERE _id = %s', [id])
   data = cur.fetchone()
   cur.close()
   return render_template('posts/show.html', post = data)
@@ -74,19 +75,42 @@ def show(id):
 def edit(id):
   form = PostForm()
   cur = mysql.connection.cursor()
-  cur.execute('SELECT * FROM blog WHERE _id = %s', (id))
+  cur.execute('SELECT * FROM blog WHERE _id = %s', [id])
   data = cur.fetchone()
   cur.close()
   return render_template('posts/edit.html', post=data, form=form)
 
-# @app.route('/posts/update/<id>')
-# def update(id):
-#     return render_template('.html')
+@app.route('/posts/update/<id>')
+def update(id):
+  form = PostForm()
+  if form.validate_on_submit():
+    picture = request.files['url']
+    nombre_con_hora = str(int(time())) + picture.filename
+    print(nombre_con_hora)
+    base_dir = sys.path[0]
+    picture.save(os.path.join(base_dir, 'static/img/' + nombre_con_hora))
 
-# @app.route('/posts/delete/<id>', methods=['POST', 'GET']) #¿?
-# def destroy(id):
-#     #Eliminar el post    
-#     return redirect(url_for('index'))
+    title = request.form['title']
+    description = request.form['description']
+    url = 'img/' + nombre_con_hora
+
+    cur = mysql.connection.cursor()
+    cur.execute('INSERT INTO blog (title, description, url) VALUES (%s, %s, %s)', (title, description, url))
+    mysql.connection.commit()
+    cur.close()
+    return redirect(url_for('list'))
+  else:
+    return render_template('posts/edit.html', id = id, form=form, todos_errores=form.errors.items())
+
+@app.route('/posts/delete/<id>', methods=['POST', 'GET']) #¿?
+def destroy(id):
+  #Eliminar el post
+  cur = mysql.connection.cursor()
+  cur.execute('DELETE FROM blog WHERE _id = %s', [id])
+  mysql.connection.commit()
+  cur.close()
+  flash('Contact Removed Successfully')
+  return redirect(url_for('list'))
 
 
 
