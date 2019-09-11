@@ -11,7 +11,7 @@
           </a>
       </div>
       <div class="col-sm-6">
-          <h4><a href="{{ url_for('index') }}"><strong>{{ post.1 }}</strong></a></h4>
+          <h4><a href="{{ url_for('show', id= post.0) }}"><strong>{{ post.1 }}</strong></a></h4>
           <p>{{  post.2  }}</p>
       </div>
     </div>

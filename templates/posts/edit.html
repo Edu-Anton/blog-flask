@@ -3,5 +3,48 @@
 {% block title %}Blog de CodiGO{% endblock %}
 
 {% block body %}
-  <h1>Nuevo Post</h1>
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      {% if todos_errores %}
+          {% for campo, errores in todos_errores %}
+              {% for error in errores %}
+                  <div class="alert alert-danger">
+                      <p><strong>{{ campo }}: {{ error }}</strong></p>
+                  </div>
+              {% endfor %}
+          {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>Nuevo Post</h2>
+        </div>
+        <div class="panel-body">
+          <form action="{{ url_for('store') }}" method="POST" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                {{ form.title.label }} {{ form.title(class_='form-control', value=post.1) }}
+            </div>
+            <div class="form-group">
+                {{ form.description.label }} 
+                <textarea name="description" id="description" cols="30" rows="3" class="form-control">{{post.2}}</textarea>
+            </div>
+            <div class="form-group">
+              {{ form.url.label }} {{ form.url(class_='form-control') }}
+            </div>
+             
+            <div class="form-group">
+              {{ form.submit(class_='btn btn-success btn-block') }}
+            </div>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 {% endblock body %}

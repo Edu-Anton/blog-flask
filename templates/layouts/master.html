@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block tittle %}{% endblock %}</title>
     <link rel="stylesheet" href=" {{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href=" {{ url_for('static', filename='css/styles.css') }}">
   </head>
   <body style="background-color: #1F1E24;">
     <div style="margin: 0 auto; padding:0;">
@@ -28,7 +29,7 @@
                 <li><a href="{{url_for('index')}}" class=""><i class="fa fa-users" aria-hidden="true"></i>INICIO</a>
                 <li><a href="#" class=""><i class="fa fa-users" aria-hidden="true"></i>ANALISIS</a>
                 <li><a href="#" class=""><i class="fa fa-picture-o" aria-hidden="true"></i>VIDEO</a>
-                <li><a href="{{url_for('create')}}" class=""><i class="fa fa-hand-lizard-o" aria-hidden="true"></i>FORO</a>
+                <li><a href="{{url_for('list')}}" class=""><i class="fa fa-hand-lizard-o" aria-hidden="true"></i>FORO</a>
                 <li><a href="#" class=""><i class="fa fa-comments" aria-hidden="true"></i>FAQ</a>
                 </li>
             </ul>
